@@ -3,7 +3,7 @@ import React, { useState, useRef } from 'react';
 function Guessnumber() {
   const [guess, setGuess] = useState('');
   const [message, setMessage] = useState('');
-  const randomNumber = useRef(Math.floor(Math.random() * 101));
+  const randomNumber = useRef(Math.floor(Math.random() * 101)); // Random number between 0-100
 
   const handleGuess = () => {
     const userGuess = parseInt(guess, 10);
@@ -15,6 +15,9 @@ function Guessnumber() {
 
     if (userGuess === randomNumber.current) {
       setMessage('You Win!');
+      // Generate a new random number after the correct guess
+      randomNumber.current = Math.floor(Math.random() * 101);
+      setGuess(''); // Clear the input after a correct guess
     } else if (userGuess > randomNumber.current) {
       setMessage('Too high! Try again.');
     } else {
